@@ -1,11 +1,11 @@
 # =[Modules dan Packages]========================
+# from flask import Flask,render_template,request,jsonify
 
-from flask import Flask,render_template,request,jsonify
-
+from flask import Flask
+from flask_ngrok import run_with_ngrok
 # =[Variabel Global]=============================
 
 app = Flask(__name__, static_url_path='/static')
-model = None
 
 # =[Routing]=====================================
 
@@ -17,7 +17,6 @@ def beranda():
 # =[Main]========================================
 if __name__ == '__main__':
 
-    # Run Flask di localhost
-    # app.run(host="localhost", port=5000, debug=True)
-    http_server = WSGIServer(('', 5000), app)
-    http_server.serve_forever()
+    # Run Flask di Google Colab menggunakan ngrok
+	run_with_ngrok(app)
+	app.run()
